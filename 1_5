@@ -1,0 +1,32 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <numeric>
+
+long long gcd(long long a, long long b) {
+    while (b) {
+        long long t = a % b;
+        a = b;
+        b = t;
+    }
+    return a;
+}
+
+long long lcm(long long a, long long b) {
+    return a / gcd(a, b) * b;
+}
+
+int main() {
+    int N;
+    std::cin >> N;
+    std::vector<long long> t(N);
+    for (int i = 0; i < N; ++i) {
+        std::cin >> t[i];
+    }
+    long long ans = 1;
+    for (int i = 0; i < N; ++i) {
+        ans = lcm(ans, t[i]);
+    }
+    std::cout << ans << std::endl;
+    return 0;
+}
